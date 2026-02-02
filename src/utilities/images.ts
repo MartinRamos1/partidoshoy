@@ -1,5 +1,5 @@
 const getTeamImage = (teamId: string) => {
-    return `https://api.promiedos.com.ar/images/team/${teamId}/2`
+    return `https://api.promiedos.com.ar/images/team/${teamId}/3`
 }
 
 const getLeagueImage = (leagueId: string) => {

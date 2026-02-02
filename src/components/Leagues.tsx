@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
-import getMatches from "../data/matches"
-import Match from "./Match.tsx"
+import { getMatches } from "../data/matches"
+import Match from "./Match"
 import { getLeagueImage } from "../utilities/images"
 import React from "react"
 
@@ -19,8 +19,8 @@ const Leagues = () => {
     return (
         <div className="flex w-full flex-col items-center gap-6">
             {allLeagues.map((league: any) => (
-                <div key={league.id} className="flex w-full flex-col gap-6 rounded-3xl border border-slate-800 bg-slate-950/60 p-6 shadow-lg">
-                    <div className="flex items-center justify-center gap-3 rounded-2xl border border-slate-700 bg-slate-900/70 p-4">
+                <div key={league.id} className="flex w-full flex-col gap-6 rounded-3xl border bg-[#1D1D1D] border-slate-800 p-6 shadow-lg text-[#EAEAEA]">
+                    <div className="flex items-center justify-center gap-3 rounded-2xl border border-slate-700 bg-[#262626] p-4">
                         <img src={getLeagueImage(league.id)} alt={league.name} className="h-10 w-10 object-contain" />
                         <h2 className="text-xl font-semibold text-slate-100">{league.name}</h2>
                     </div>
