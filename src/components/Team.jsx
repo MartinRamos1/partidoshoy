@@ -2,7 +2,7 @@ import { getTeamImage } from "../utilities/images"
 import React from "react"
 
 
-const Team = ({ team, local }: { team: any, local?: boolean }) => {
+const Team = ({ team, local }) => {
     return (
         <section className={`flex flex-1 items-center gap-1 sm:gap-2 md:gap-3 ${local ? 'justify-end' : 'justify-start'}`}>
             {local ? (

@@ -72,10 +72,10 @@ const TeamEvents = ({ events, team, isLeft }) => (
 
 const TimeRow = ({ row }) => (
     <div className="relative">
-        <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gray-300 -translate-x-1/2 hidden sm:block" />
+        <div className="absolute left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2 hidden sm:block" />
         
         <div className="flex justify-center mb-2 sm:mb-3">
-            <span className="bg-gray-800 text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded-full font-bold text-xs sm:text-sm z-10 relative">
+            <span className="bg-gray-800 text-gray-300 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full font-bold text-xs sm:text-sm z-10 relative">
                 {row.time}
             </span>
         </div>
@@ -88,7 +88,7 @@ const TimeRow = ({ row }) => (
 );
 
 const StageHeader = ({ stage }) => (
-    <div className="bg-gray-900 text-gray-200 flex justify-center items-center p-3 sm:p-4 rounded-lg mb-3 sm:mb-4 mt-2">
+    <div className="bg-gray-900 text-gray-300 flex justify-center items-center p-3 sm:p-4 rounded-lg mb-3 sm:mb-4 mt-2">
         <h2 className="text-lg sm:text-xl font-bold">{stage.name}</h2>
         <div className="flex items-center justify-center gap-2 sm:gap-4 mt-2 flex-wrap">
             {stage.is_penalties_stage && (
@@ -111,7 +111,7 @@ const MinutoAMinuto = ({ data }) => {
 
     return (
         <div className="max-w-6xl mx-auto p-2 sm:p-4 w-full">
-            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6 text-center">
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6 text-center text-gray-300">
                 Minuto a Minuto
             </h1>
             

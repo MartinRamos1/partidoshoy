@@ -8,6 +8,7 @@ import Game from './pages/Game'
 function App() {
 
   return (
+
     <>
       <Navbar />
       <Routes>

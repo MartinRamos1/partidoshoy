@@ -62,20 +62,27 @@ const Game = () =>  {
             <div className="w-full mt-6">
             {match.scores?.length > 0 && (match.teams[0].goals?.length > 0 || match.teams[1].goals?.length > 0) && (
                 
-                <div className="flex items-start justify-center gap-4 sm:gap-8 text-sm sm:text-base font-semibold w-full max-w-4xl mx-auto">
-                    <div className="flex-1 flex flex-col gap-2 items-end pr-2 sm:pr-4">
+                <div className="flex items-start justify-center gap-3 sm:gap-6 md:gap-8 text-sm sm:text-base font-semibold w-full">
+                    {/* Goles equipo local */}
+                    <div className="flex-1 flex flex-col gap-2 items-end pr-2 sm:pr-3">
                         {match.teams[0].goals?.map((goal, index) => (
                             <div key={index} className="flex items-center gap-2 text-gray-300">
                                 <span className="text-right">{goal.player_sname}</span>
-                                <span className="text-green-400 font-bold">{goal.time_to_display}</span>
+                                <span className="text-green-500 font-bold">{goal.time_to_display}</span>
                             </div>
                         ))}
                     </div>
                     
-                    <div className="flex-1 flex flex-col gap-2 items-start pl-2 sm:pl-4">
+                    {/* Línea divisoria - alineada con el guion del marcador */}
+                    <div className="flex min-w-[140px] sm:min-w-[180px] justify-center items-center">
+                        <div className="w-px bg-gray-600 min-h-[40px] h-full"></div>
+                    </div>
+                    
+                    {/* Goles equipo visitante */}
+                    <div className="flex-1 flex flex-col gap-2 items-start pl-2 sm:pl-3">
                         {match.teams[1].goals?.map((goal, index) => (
                             <div key={index} className="flex items-center gap-2 text-gray-300">
-                                <span className="text-green-400 font-bold">{goal.time_to_display}</span>
+                                <span className="text-green-500 font-bold">{goal.time_to_display}</span>
                                 <span className="text-left">{goal.player_sname}</span>
                             </div>
                         ))}

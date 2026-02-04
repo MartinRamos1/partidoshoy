@@ -10,7 +10,7 @@ const Match = ({ match }) => {
             <div className="flex items-center justify-center gap-2 sm:gap-4 md:gap-6 cursor-pointer p-2 sm:p-4">
 
                     <div className="min-w-[40px] sm:min-w-[60px]">
-                        <h3 className="text-sm sm:text-lg md:text-2xl font-semibold text-green-600 text-center">{match.status.enum != 1 ? match.game_time_status_to_display : ""}</h3>
+                        <h3 className={`text-sm sm:text-lg md:text-2xl font-semibold text-green-700 text-center ${match.status.enum == 3 ? "text-red-700" : ""}`}>{match.status.enum != 1 ? match.game_time_status_to_display : ""}</h3>
                     </div>
 
 
@@ -34,25 +34,47 @@ const Match = ({ match }) => {
 
             </div>
 
-            {match.scores?.length > 0 && (match.teams[0].goals?.length > 0 || match.teams[1].goals?.length > 0) && (
-                <div className="flex items-center justify-between gap-2 sm:gap-4 md:gap-6 px-2 sm:px-4 mt-2">
-                    <div className="flex-1 w-1/2 ">
+            
+             <div className="">
+             {match.scores?.length > 0 && (match.teams[0].goals?.length > 0 || match.teams[1].goals?.length > 0) && (
+                <div className="flex items-start justify-center gap-2 sm:gap-4 md:gap-6 px-2 sm:px-4 mt-4">
+                    
+                    {/* Espaciador izquierdo - mismo ancho que el tiempo */}
+                    <div className="min-w-[40px] sm:min-w-[60px]"></div>
+
+                    {/* Goles equipo local */}
+                    <div className="flex flex-col gap-2 flex-1 items-end pr-2 sm:pr-3 md:pr-4">
                         {match.teams[0].goals?.map((goal, index) => (
-                            <div key={index} className="flex justify-center items-center text-xs sm:text-sm">
-                                {goal.player_sname} {goal.time_to_display}
+                            <div key={index} className="flex justify-end items-center text-xs sm:text-sm">
+                                <span className="text-gray-300">{goal.player_sname}</span>
+                                <span className="text-green-600 font-bold ml-2">{goal.time_to_display}</span>
                             </div>
                         ))}
                     </div>
                     
-                    <div className="flex-1 text-left w-1/2">
+                    {/* Línea divisoria - mismo ancho que el marcador */}
+                    <div className="flex min-w-[80px] sm:min-w-[100px] md:min-w-[120px] justify-center px-2 sm:px-3 md:px-4">
+                        <div className="w-px bg-gray-600 min-h-[40px] h-full"></div>
+                    </div>
+                    
+                    {/* Goles equipo visitante */}
+                    <div className="flex flex-col gap-2 flex-1 items-start pl-2 sm:pl-3 md:pl-4">
                         {match.teams[1].goals?.map((goal, index) => (
-                            <div key={index} className="flex justify-center items-center text-xs sm:text-sm">
-                                {goal.player_sname} {goal.time_to_display}
+                            <div key={index} className="flex items-center text-xs sm:text-sm">
+                                <span className="text-gray-300">{goal.player_sname}</span>
+                                <span className="text-green-600 font-bold ml-2">{goal.time_to_display}</span>
                             </div>
                         ))}
                     </div>
+
+                    {/* Espaciador derecho - para equilibrar */}
+                    <div className="min-w-0"></div>
                 </div>
             )}
+                
+                
+            </div>   
+           
         </div>
     )
 }
