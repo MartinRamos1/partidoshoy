@@ -19,12 +19,12 @@ const Leagues = ({ date }) => {
 
     
     return (
-        <div className="flex w-full flex-col items-center gap-4 sm:gap-6">
+        <div className="flex w-full flex-col items-center gap-4 sm:gap-6 overflow-hidden">
             {allLeagues.map((league) => (
-                <div key={league.id} className="flex w-full flex-col gap-4 sm:gap-6 rounded-2xl sm:rounded-3xl border bg-[#1D1D1D] border-gray-700 p-3 sm:p-4 md:p-6 shadow-lg text-[#EAEAEA]">
-                    <div className="flex items-center justify-center gap-2 sm:gap-3 rounded-xl sm:rounded-2xl border border-gray-700 bg-[#262626] p-3 sm:p-4">
-                        <img src={getLeagueImage(league.id)} alt={league.name} className="h-8 w-8 sm:h-10 sm:w-10 object-contain" />
-                        <h2 className="text-lg sm:text-xl font-semibold text-slate-100">{league.name}</h2>
+                <div key={league.id} className="flex w-full flex-col gap-4 sm:gap-6 rounded-2xl sm:rounded-3xl border bg-[#1D1D1D] border-gray-700 p-3 sm:p-4 md:p-6 shadow-lg text-[#EAEAEA] min-w-0">
+                    <div className="flex items-center justify-center gap-2 sm:gap-3 rounded-xl sm:rounded-2xl border border-gray-700 bg-[#262626] p-3 sm:p-4 min-w-0">
+                        <img src={getLeagueImage(league.id)} alt={league.name} className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 object-contain shrink-0" />
+                        <h2 className="text-base sm:text-lg md:text-xl font-semibold text-slate-100 truncate">{league.name}</h2>
                     </div>
 
                     <div className="flex flex-col divide-y divide-gray-800">

@@ -8,24 +8,24 @@ import FlagIcon from "../../components/Icons/FlagIcon"
 const GameInfo = ({ match }) => {
     return (
         <>
-             <div className="flex items-center justify-center gap-1 sm:gap-2">
+             <div className="flex items-center justify-center gap-1 sm:gap-2 min-w-0">
                     <CalendarIcon />
-                    <h3 className="text-center">{formatArgentinaDate(match.start_time)}</h3>
+                    <h3 className="text-center truncate">{formatArgentinaDate(match.start_time)}</h3>
                 </div>
 
-                <div className="flex items-center justify-center gap-1 sm:gap-2 md:gap-3">
+                <div className="flex items-center justify-center gap-1 sm:gap-2 min-w-0">
                     <StadiumIcon />
-                    <h3 className="text-center truncate max-w-[120px] sm:max-w-[200px] md:max-w-[250px]">{match.game_info[0]?.value || "-"}</h3>
+                    <h3 className="text-center truncate max-w-[100px] sm:max-w-[150px] md:max-w-[200px]">{match.game_info[0]?.value || "-"}</h3>
                 </div>
 
-                <div className="flex items-center justify-center gap-1 sm:gap-2 md:gap-3">
+                <div className="flex items-center justify-center gap-1 sm:gap-2 min-w-0">
                     <FlagIcon />
-                    <h3 className="text-center truncate max-w-[120px] sm:max-w-[200px] md:max-w-[250px]">{match.game_info[2]?.value || "-"}</h3>
+                    <h3 className="text-center truncate max-w-[100px] sm:max-w-[150px] md:max-w-[200px]">{match.game_info[2]?.value || "-"}</h3>
                 </div>
 
-                <div className="flex items-center justify-center gap-1 sm:gap-2 md:gap-3">
+                <div className="flex items-center justify-center gap-1 sm:gap-2 min-w-0">
                     <TvIcon />
-                    <h3 className="text-center truncate max-w-[120px] sm:max-w-[200px] md:max-w-[250px]">{match.game_info[3]?.value || "-"}</h3>
+                    <h3 className="text-center truncate max-w-[100px] sm:max-w-[150px] md:max-w-[200px]">{match.game_info[3]?.value || "-"}</h3>
                 </div>
         </>
     )
