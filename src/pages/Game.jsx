@@ -7,21 +7,27 @@ import MinutoAMinuto from "../components/Game/MinutoAMinuto"
 
 import { getLeagueImage } from "../utilities/images"
 import GameInfo from "../components/Game/GameInfo"
+import LineUp from "../components/LineUp"
+import Datos from "../components/Datos"
+import Stats from "../components/Stats"
 
 const Game = () =>  {
     const { team1, team2, id } = useParams()
     const [match, setMatch] = useState(null)
+    const [tab, setTab] = useState("directo")
+    
     useEffect(() =>  {
         getMatch(team1, team2, id).then((data) => {
             setMatch(data)
             console.log(data)
+            setTab(data?.game_time == -1 ? "datos" : "directo")
         })
     }, [team1, team2, id])
 
     if (!match) return <div>Cargando...</div>
 
     return (
-        <div className="flex flex-col items-center justify-center w-full mt-4 md:mt-10 px-2 sm:px-4">   
+        <div className="flex flex-col items-center justify-center w-full mt-4 md:mt-10 px-2 sm:px-4"> 
         <div className="flex items-center justify-center gap-2 px-4">
             <img src={getLeagueImage(match.league.id)} alt={match.league.name} className="h-6 w-6 sm:h-8 sm:w-8 object-contain mt-1 shrink-0" />
             <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-center text-gray-300 truncate">{match.league.name}</h1>
@@ -36,7 +42,12 @@ const Game = () =>  {
             <div className="flex flex-row items-center justify-center gap-1 sm:gap-2 md:gap-4 text-lg sm:text-2xl md:text-3xl lg:text-4xl font-semibold mt-6 md:mt-8 w-full min-w-0">
 
                 <div className="flex flex-row items-center gap-1 sm:gap-2 md:gap-3 flex-1 justify-end min-w-0">
-                    <h2 className="text-right text-gray-200 truncate text-sm sm:text-base md:text-xl lg:text-4xl max-w-[80px] sm:max-w-[120px] md:max-w-[180px] lg:max-w-[250px]">{match.teams[0].name}</h2>
+                    {match.game_time !== -1 ? (
+                        <p className="text-red-500">{match.game_time_status_to_display? match.game_time_status_to_display : ""}</p>
+                    ) : (
+                        <p className="text-green-500">{match.game_time_to_display ? match.game_time_to_display : ""}</p>
+                    )}
+                    <h2 className="text-right text-gray-200 w-full p-2 text-sm sm:text-base md:text-xl lg:text-4xl max-w-[80px] sm:max-w-[120px] md:max-w-[180px] lg:max-w-[250px]">{match.teams[0].short_name}</h2>
                     <img src={getTeamImage(match.teams[0].id)} alt={match.teams[0].name} className="h-12 w-12 sm:h-16 sm:w-16 md:h-20 md:w-20 lg:h-24 lg:w-24 object-contain shrink-0" />
                 </div>
 
@@ -48,9 +59,9 @@ const Game = () =>  {
                     )}
                 </div>
                 
-                <div className="flex flex-row items-center gap-1 sm:gap-2 md:gap-3 flex-1 justify-start min-w-0">
+                <div className="flex flex-row items-center gap-1 sm:gap-2 md:gap-3 flex-1 justify-start min-w-0 ">
                     <img src={getTeamImage(match.teams[1].id)} alt={match.teams[1].name} className="h-12 w-12 sm:h-16 sm:w-16 md:h-20 md:w-20 lg:h-24 lg:w-24 object-contain shrink-0" />
-                    <h2 className="text-left text-gray-200 truncate text-sm sm:text-base md:text-xl lg:text-4xl max-w-[80px] sm:max-w-[120px] md:max-w-[180px] lg:max-w-[250px]">{match.teams[1].name}</h2>           
+                    <h2 className="text-left text-gray-200 w-full p-2 text-sm sm:text-base md:text-xl lg:text-4xl max-w-[80px] sm:max-w-[120px] md:max-w-[180px] lg:max-w-[250px]">{match.teams[1].short_name}</h2>           
                 </div>
 
             </div>
@@ -90,9 +101,34 @@ const Game = () =>  {
                 </div>
             )}
             </div>
+            <ul className="flex flex-row items-center text-md sm:text-lg md:text-xl gap-6 mt-8 font-semibold text-gray-300 w-full max-w-4xl overflow-hidden">
+                <li className= {tab === "directo" ? "border-b-2 border-green-600 hover:text-green-500" : "text-gray-300 hover:text-green-500"}>
+                    <button className="cursor-pointer" onClick={() => setTab("directo")}>Directo</button>
+                </li>
+                <li className={tab === "alineacion" ? "border-b-2 border-green-600 hover:text-green-500" : "text-gray-300 hover:text-green-500"}>
+                    <button className="cursor-pointer" onClick={() => setTab("alineacion")}>Alineación</button>
+                </li>
+                <li className={tab === "datos" ? "border-b-2 border-green-600 hover:text-green-500" : "text-gray-300 hover:text-green-500"}>
+                    <button className="cursor-pointer" onClick={() => setTab("datos")}>Datos</button>
+                </li>
+                <li className={tab === "estadisticas" ? "border-b-2 border-green-600 hover:text-green-500" : "text-gray-300 hover:text-green-500"}>
+                    <button className="cursor-pointer" onClick={() => setTab("estadisticas")}>Estadísticas</button>
+                </li>
+            </ul>
 
-            <div className="flex items-center justify-center gap-2 sm:gap-4 p-2 sm:p-3 md:p-4 border border-gray-700 rounded-lg mt-4 w-full max-w-4xl overflow-hidden">
+            <div className="flex items-center justify-center gap-2 sm:gap-4 p-2 sm:p-3 md:p-4 mt-10 w-full max-w-4xl overflow-hidden">
+                {tab === "directo" && (
                      <MinutoAMinuto data={match.events} /> 
+                )}
+                {tab === "alineacion" && (
+                    <LineUp match={match} />
+                )}
+                {tab === "datos" && (
+                    <Datos match={match} />
+                )}
+                {tab === "estadisticas" && (
+                    <Stats match={match} />
+                )}
             </div>
 
             </div>
